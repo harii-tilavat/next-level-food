@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import classes from "./nav-link.module.css";
 const NavLink = ({ href, children }) => {
   const path = usePathname();
-  console.log("PATH : ", path);
   return (
     <Link href={href} className={path.startsWith(href) ? `${classes.link} ${classes.active}` : classes.link}>
       {children}
