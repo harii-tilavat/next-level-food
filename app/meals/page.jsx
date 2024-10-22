@@ -1,14 +1,22 @@
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
+import { getMeals } from "@/lib/meals";
+import MealsLoading from "./meals-loading";
+
+async function Meals() {
+  const meals = await getMeals();
+  // console.log("MEALS : ", meals );
+  return <MealsGrid meals={meals} />;
+}
 const MealsPage = () => {
   return (
     <>
       <header className={classes.header}>
         <h1>
-          Delicious meals, create
-          <span className={classes.highlight}>by you</span>
+          Delicious meals, created
+          <span className={classes.highlight}> by you</span>
         </h1>
         <p>Choose your favorite recipe and cook it yourself. It is easy and fun</p>
         <p className={classes.cta}>
@@ -16,7 +24,9 @@ const MealsPage = () => {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={[]}/>
+        <Suspense fallback={<MealsLoading />}>
+          <Meals />
+        </Suspense>
       </main>
     </>
   );

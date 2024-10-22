@@ -1,11 +1,12 @@
 import MealsItemPage from "@/app/meals/[slug]/page";
 import classes from './meal-grid.module.css';
+import MealItem from "./meal-item";
 const MealsGrid = ({ meals = [] }) => {
   return (
-    <ul>
+    <ul className={classes.meals}>
       {meals.map((meal) => (
         <li key={meal.id}>
-          <MealsItemPage {...meal } />
+          <MealItem {...meal } />
         </li>
       ))}
     </ul>
