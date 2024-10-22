@@ -59,3 +59,6 @@
     margin: 0;
     color: #ddd6cb;
 }
+.sec .sub-sec .new-sec{
+    background-color: red;
+}
